@@ -27,22 +27,5 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: test
-    projects: 'src/StructAnalyzers/*Tests/*.csproj'
+    projects: 'src/StructAnalyzers/*Tests/*.csproj' 'src/StructAnalyzers/*Tests/*.csproj'
     arguments: '--configuration $(buildConfiguration) --logger:trx'
-    
-- task: DotNetCoreCLI@2
-  inputs:
-    command: test
-    projects: 'src/Core/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --logger:trx'
-
-- task: PublishTestResults@1
-  displayName: Publish Test Results
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-    testRunner: NUnit
-    testResultsFiles: '**/*.trx'
-    mergeTestResults: true
-    testRunTitle: 'Unit Tests'
-  condition: succeededOrFailed()
