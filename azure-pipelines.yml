@@ -27,5 +27,5 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: test
-    projects: ['src/StructAnalyzers/*Tests/*.csproj', 'src/Core/*Tests/*.csproj']
+    projects: ['src/StructAnalyzers/StructAnalyzer.Tests', 'src/Core/ErrorProne.NET.Core.Tests']
     arguments: '--configuration $(buildConfiguration) --logger:trx'
