@@ -103,10 +103,13 @@ namespace ErrorProne.NET.Cli
             if (!string.IsNullOrEmpty(options.LogFile))
             {
                 options.LogFile = Path.GetFullPath(options.LogFile);
-                WriteInfo($"Log file enabled ('{options.LogFile}')");
-
-                FileUtilities.TryDeleteIfNeeded(options.LogFile);
             }
+            else
+            {
+                options.LogFile = Path.GetFullPath("log.txt");
+            }
+            WriteInfo($"Log file enabled ('{options.LogFile}')");
+            FileUtilities.TryDeleteIfNeeded(options.LogFile);
 
             if (options.DisabledDiagnostics != null && options.DisabledDiagnostics.Length != 0)
             {
